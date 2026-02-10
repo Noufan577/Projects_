@@ -1,30 +1,27 @@
+
 class User:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self,name):
+        self.username = name
         self.is_loggedin = False
 
-    # decorator
-    def authenticator(function):
-        def wrap(self, *args, **kwargs):
-            if self.is_loggedin:
-                return function(self, *args, **kwargs)
+    def authenticator(funct):
+        def wrapper(self,*args,**kwargs):
+            if (self.is_loggedin):
+                funct(self,*args,**kwargs)
             else:
-                print("User not logged in. Cannot create post.")
-        return wrap
-
+                print("User not logged in")
+        return wrapper
+    def login(self):
+        self.is_loggedin=True
     @authenticator
     def create_post(self):
-        print(f"Post created by user {self.name}")
+        print(f"Postcreated by {self.username}")
 
 
-# create user
-u1 = User("Noufal")
+                
+u=User("Abhi")
+print(u.username)
+print(u.is_loggedin)
 
-# try without login
-u1.create_post()
-
-# login user
-u1.is_loggedin = True
-
-# try again
-u1.create_post()
+u.login()
+u.create_post()
