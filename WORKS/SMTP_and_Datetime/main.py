@@ -1,11 +1,17 @@
-import datetime as dt
+import time
 
-now=dt.datetime.now()
+def decorator(fucntion):
+    def wrapper():
+        time.sleep(2)
+        fucntion()
+    return wrapper
 
-year=now.year
+@decorator
+def say_hello():
+    print("hello")
+def say_Bye():
+    print("Bye")
 
-month=now.month
+say_hello()
+say_Bye()
 
-weekd=now.weekday()
-
-print(month,year,weekd)
